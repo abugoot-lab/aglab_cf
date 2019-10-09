@@ -1,10 +1,10 @@
 FROM ubuntu:16.04
 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
-RUN apt-get update && apt-get install -y software-properties-common
+RUN apt-get update && apt-get install -y software-properties-common -y apt-transport-https
 RUN apt-add-repository multiverse
 RUN add-apt-repository restricted
-RUN add-apt-repository ppa:webupd8team/java
+RUN add-apt-repository -y ppa:webupd8team/java
 RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 RUN apt-get update && apt-get install -y \
     wget \
@@ -20,8 +20,8 @@ RUN apt-get update && apt-get install -y \
     pkg-config \
     graphviz \
     libssl-dev \
-    cpanminus \
-    oracle-java8-installer
+    cpanminus
+#   oracle-java8-installer
 
 # Dependencies
 RUN cpanm File::Sort Config::Any Bio::FeatureIO Bio::Cluster::SequenceFamily
