@@ -62,6 +62,7 @@ WORKDIR /opt/
 RUN wget https://crisprcas.i2bc.paris-saclay.fr/Home/DownloadFile?filename=CRISPRCasFinder.zip -O CRISPRCasFinder.zip
 RUN unzip CRISPRCasFinder.zip
 WORKDIR /opt/CRISPRCasFinder/
+RUN chmod 777 installer_UBUNTU.sh
 RUN ./installer_UBUNTU.sh
 
 # Install Biopython and pandas; helping packages
