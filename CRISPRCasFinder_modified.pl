@@ -643,12 +643,12 @@ while($seq = $seqIO->next_seq()){  # DC - replace 'next_seq' by 'next_seq()'
     		#$seqID1 = $seqID1[0];
   	}
   	#else{
-   # 		if($seqID1 =~ /\./){
+    #		if($seqID1 =~ /\./){
     #  			@seqID1 = split (/\./,$seqID1);
     #  			$seqID1 = $seqID1[0];
-   # 		}
+   	#	}
 		
-  	}
+  	#}
 	# Add sequence number to variable $seqID1
 	#$seqID1 = $seqID1."_".$inputfileCount;
   
