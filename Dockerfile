@@ -58,6 +58,7 @@ RUN apt-get install -y \
 #RUN make install
 
 # Download and install
+
 WORKDIR /opt/
 RUN wget https://crisprcas.i2bc.paris-saclay.fr/Home/DownloadFile?filename=CRISPRCasFinder.zip -O CRISPRCasFinder.zip
 RUN unzip CRISPRCasFinder.zip
@@ -73,5 +74,6 @@ RUN ./installer_UBUNTU.sh
 #COPY process_CRISPR.py /opt/CRISPRCasFinder/
 #COPY C4Nuc.py /opt/CRISPRCasFinder/
 #COPY Dockerfile /opt/
+COPY CRISPRCasFinder_modified.pl /opt/CRISPRCasFinder/
 WORKDIR /opt/CRISPRCasFinder/
 ENV PATH="/opt/CRISPRCasFinder/bin:${PATH}"
