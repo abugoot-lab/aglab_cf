@@ -77,3 +77,4 @@ RUN ./installer_UBUNTU.sh
 COPY CRISPRCasFinder_modified.pl /opt/CRISPRCasFinder/
 WORKDIR /opt/CRISPRCasFinder/
 ENV PATH="/opt/CRISPRCasFinder/bin:${PATH}"
+ENV MACSY_HOME=/opt/CRISPRCasFinder/macsyfinder-1.0.5/
