@@ -8,8 +8,7 @@ RUN add-apt-repository -y ppa:webupd8team/java
 RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 RUN apt-get update 
 
-RUN echo 'deb http://archive.ubuntu.com/ubuntu xenial multiverse' >> /etc/apt/sources.list \
-         && apt-get update \
+RUN apt-get update \
          && apt-get upgrade -y --force-yes \
          && apt-get install -y --force-yes \
         build-essential \
@@ -24,7 +23,7 @@ RUN echo 'deb http://archive.ubuntu.com/ubuntu xenial multiverse' >> /etc/apt/so
          python3-pandas \
          && apt-get clean
 
-RUN pip install --upgrade pip
+RUN pip3 install --upgrade pip
 
 RUN pip3 install rdflib --upgrade \
     && pip3 install cython --upgrade \
