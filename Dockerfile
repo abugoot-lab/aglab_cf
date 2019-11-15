@@ -1,4 +1,5 @@
-FROM ubuntu:16.04
+#FROM ubuntu:16.04
+FROM arcanabio/python:3.7
 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 RUN apt-get update && apt-get install -y software-properties-common -y apt-transport-https
@@ -21,7 +22,31 @@ RUN apt-get install -y \
      pkg-config \
      graphviz \
      libssl-dev \
-     cpanminus
+     cpanminus \
+     python3-numpy \
+         g++ \
+         python3-dev \
+         t-coffee python3-pil \
+         python3-matplotlib \
+         python3-reportlab \
+         python3-pip r-base \
+         python3-pandas \
+         && apt-get clean
+
+RUN pip3 install rdflib --upgrade \
+    && pip3 install cython --upgrade \
+    && pip3 install numpy --upgrade \
+    && pip3 install Pillow --upgrade \
+    && pip3 install matplotlib --upgrade \
+    && pip3 install pandas --upgrade
+
+
+WORKDIR /
+ENV PYTHON_PATH /biopython
+RUN git clone https://github.com/biopython/biopython.git
+WORKDIR /biopython
+RUN python setup.py install
+
 #   oracle-java8-installer
 
 # Dependencies
