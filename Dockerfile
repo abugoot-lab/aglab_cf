@@ -24,6 +24,35 @@ RUN apt-get install -y \
      cpanminus
 #   oracle-java8-installer
 
+RUN echo 'deb http://archive.ubuntu.com/ubuntu xenial multiverse' >> /etc/apt/sources.list \
+         && apt-get update \
+         && apt-get upgrade -y --force-yes \
+         && apt-get install -y --force-yes \
+        build-essential \
+        git \
+        python3-numpy \
+         g++ \
+         python3-dev \
+         t-coffee python3-pil \
+         python3-matplotlib \
+         python3-reportlab \
+         python3-pip r-base \
+         python3-pandas \
+         && apt-get clean
+
+RUN pip3 install rdflib --upgrade \
+    && pip3 install cython --upgrade \
+    && pip3 install numpy --upgrade \
+    && pip3 install Pillow --upgrade \
+    && pip3 install matplotlib --upgrade \
+    && pip3 install pandas --upgrade
+
+WORKDIR /
+ENV PYTHON_PATH /biopython
+RUN git clone https://github.com/biopython/biopython.git
+WORKDIR /biopython
+RUN python setup.py install
+
 # Dependencies
 #RUN cpanm File::Sort Config::Any Bio::FeatureIO Bio::Cluster::SequenceFamily
 
