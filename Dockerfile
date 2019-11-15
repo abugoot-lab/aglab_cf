@@ -7,6 +7,23 @@ RUN add-apt-repository restricted
 RUN add-apt-repository -y ppa:webupd8team/java
 RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 RUN apt-get update 
+
+RUN echo 'deb http://archive.ubuntu.com/ubuntu xenial multiverse' >> /etc/apt/sources.list \
+         && apt-get update \
+         && apt-get upgrade -y --force-yes \
+         && apt-get install -y --force-yes \
+        build-essential \
+        git \
+        python3-numpy \
+         g++ \
+         python3-dev \
+         t-coffee python3-pil \
+         python3-matplotlib \
+         python3-reportlab \
+         python3-pip r-base \
+         python3-pandas \
+         && apt-get clean
+
 RUN apt-get install -y \
      wget \
      unzip \
@@ -24,21 +41,7 @@ RUN apt-get install -y \
      cpanminus
 #   oracle-java8-installer
 
-RUN echo 'deb http://archive.ubuntu.com/ubuntu xenial multiverse' >> /etc/apt/sources.list \
-         && apt-get update \
-         && apt-get upgrade -y --force-yes \
-         && apt-get install -y --force-yes \
-        build-essential \
-        git \
-        python3-numpy \
-         g++ \
-         python3-dev \
-         t-coffee python3-pil \
-         python3-matplotlib \
-         python3-reportlab \
-         python3-pip r-base \
-         python3-pandas \
-         && apt-get clean
+
 
 RUN pip3 install rdflib --upgrade \
     && pip3 install cython --upgrade \
