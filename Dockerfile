@@ -24,6 +24,15 @@ RUN echo 'deb http://archive.ubuntu.com/ubuntu xenial multiverse' >> /etc/apt/so
          python3-pandas \
          && apt-get clean
 
+RUN pip install --upgrade pip
+
+RUN pip3 install rdflib --upgrade \
+    && pip3 install cython --upgrade \
+    && pip3 install numpy --upgrade \
+    && pip3 install Pillow --upgrade \
+    && pip3 install matplotlib --upgrade \
+    && pip3 install pandas --upgrade
+
 RUN apt-get install -y \
      wget \
      unzip \
@@ -42,13 +51,6 @@ RUN apt-get install -y \
 #   oracle-java8-installer
 
 
-
-RUN pip3 install rdflib --upgrade \
-    && pip3 install cython --upgrade \
-    && pip3 install numpy --upgrade \
-    && pip3 install Pillow --upgrade \
-    && pip3 install matplotlib --upgrade \
-    && pip3 install pandas --upgrade
 
 WORKDIR /
 ENV PYTHON_PATH /biopython
